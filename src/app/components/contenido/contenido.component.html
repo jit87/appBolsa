@@ -1,0 +1,43 @@
+
+    <table  *ngIf="listEmpresas.length > 0" class="table table-hover mt-10">
+      <thead>
+        <tr>
+          <td style="font-weight: bold;">Nombre</td>
+          <td style="font-weight: bold;">Ticker</td>
+          <td style="font-weight: bold;">Precio</td>
+          <td style="font-weight: bold;">Número de acciones</td>
+          <td style="font-weight: bold;">PER</td>
+          <td style="font-weight: bold;">Total invertido</td>
+          <td style="font-weight: bold;">Yield %</td>
+          <td style="font-weight: bold;">Dividendos anuales</td> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Empresa of listEmpresas">
+          <td>{{ Empresa.nombre }}</td>
+          <td>{{ Empresa.ticker | uppercase}}</td>
+          <td>{{ Empresa.precio }}</td>
+          <td>{{ Empresa.acciones }}</td>
+          <td>{{ Empresa.per }}</td>
+          <td>{{ Empresa.invertido }}</td>
+          <td>{{ Empresa.yield }}</td>
+          <td>{{ Empresa.dividendos | number:'1.2-2' }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm float-end">Editar</button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm float-end">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+<button style="margin-left:10px;" class="btn btn-primary btn-sm float-end" [routerLink]="['editar-acciones']">Añadir acción</button>
+
+   
+<div *ngIf="listEmpresas.length == 0">
+        <h5>No hay acciones introducidas</h5>
+    </div>
+
+
+
