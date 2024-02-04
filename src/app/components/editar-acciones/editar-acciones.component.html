@@ -1,20 +1,22 @@
-
-
-        <div class="main-content">
-            <form class="formEditarAccion">
-                <br>
-                <div style="max-width: 500px;margin-left:40%;">
-                    <div class="mb-3">
-                    <label  class="form-label">Nombre de la acción</label>
-                    <input formControlName="nombre"  type="text" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                    <label  class="form-label">Número de acciones</label>
-                    <input  formControlName="numero" type="number" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                </div>
-            </form>
+<div class="main-content">
+    <form [formGroup]="agregarAccion" class="formEditarAccion" (ngSubmit)="addAccion();">
+      <br>
+      <div style="max-width: 500px; margin-left: 40%; border: solid 1px lightblue; padding: 20px;">
+        <button class="btn" style="margin-left: 92.5%; cursor: pointer;" [routerLink]="['']">X</button>
+        <div class="mb-3">
+          <label class="form-label">Nombre de la acción</label>
+          <input formControlName="nombre" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ticker</label>
+          <input formControlName="ticker" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Número de acciones</label>
+          <input formControlName="numero" type="number" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir</button>
       </div>
-
+    </form>
+  </div>
   

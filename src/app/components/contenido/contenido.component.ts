@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { StockService } from '../../services/stock.service';
+import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
 
 
@@ -22,13 +23,18 @@ export class ContenidoComponent implements OnInit {
     { nombre: "Coca-Cola", ticker: "KO", precio: 58, acciones:38, per:25, invertido: 1500,yield:2.85, dividendos:40},
     { nombre: "Procter & Gamble", ticker: "PG", precio: 148, acciones:38, per:25, invertido: 2000,yield:3.0, dividendos:0}
   ]
+  
 
-
-  constructor(private stockService: StockService) {
+  constructor(private stockService: StockService, private empresaService: EmpresaService) {
   }
+
+  
 
 
   ngOnInit(): void {
+
+    this.listEmpresas = this.empresaService.getListEmpresas();
+
     this.stockService.getStockQuote(this.symbol).subscribe(data => {
       // Accede a los datos de la cotización aquí
       this.stockQuote = data;
@@ -94,6 +100,11 @@ export class ContenidoComponent implements OnInit {
     this.total = this.total + empresa.invertido; 
     return this.total; 
   }*/
+
+
+  eliminarAccion(){
+
+  }
 
 
 

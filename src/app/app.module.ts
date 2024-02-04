@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { EditarAccionesComponent } from './components/editar-acciones/editar-acciones.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { EmpresaService } from './services/empresa.service';
 
 
 
@@ -30,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [EmpresaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

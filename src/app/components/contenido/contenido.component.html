@@ -1,5 +1,5 @@
 
-    <table  *ngIf="listEmpresas.length > 0" class="table table-hover mt-10">
+    <table  class="table table-hover mt-10">
       <thead>
         <tr>
           <td style="font-weight: bold;">Nombre</td>
@@ -26,7 +26,7 @@
             <button class="btn btn-primary btn-sm float-end">Editar</button>
           </td>
           <td>
-            <button class="btn btn-danger btn-sm float-end">Eliminar</button>
+            <button class="btn btn-danger btn-sm float-end" (ngClick)="eliminarAccion();">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -35,7 +35,7 @@
 <button style="margin-left:10px;" class="btn btn-primary btn-sm float-end" [routerLink]="['editar-acciones']">Añadir acción</button>
 
    
-<div *ngIf="listEmpresas.length == 0">
+<div *ngIf="listEmpresas.length == 0" style="margin-top:100px;margin: 1%;">
         <h5>No hay acciones introducidas</h5>
     </div>
 
