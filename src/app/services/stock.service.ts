@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Empresa } from '../interfaces/Empresa';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,14 @@ export class StockService {
     return this.http.get(this.apiUrl, { params });
   }
 
-  getStockPrice(): Observable<any> {
-    const symbol = 'AAPL'; // Símbolo de Apple
+/*
+  getSymbol(name: string){
+
+
+  }*/
+
+  getStockPrice(symbol: string): Observable<any> {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&apikey=${this.apiKey}`;
-    
     return this.http.get(url);
   }
 

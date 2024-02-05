@@ -83,8 +83,11 @@ export class ContenidoComponent implements OnInit {
   }*/
 
 
+
+
   //Calcula el dinero invertido en una accion de una empresa
   calcularInvertido(empresa: Empresa): number {
+    //var precio = this.stockService.getStockPrice(symbol);
     return empresa.acciones * empresa.precio;
   }
 
