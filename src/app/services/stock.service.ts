@@ -24,16 +24,13 @@ export class StockService {
     return this.http.get(this.apiUrl, { params });
   }
 
-/*
-  getSymbol(name: string){
-
-
-  }*/
 
   getStockPrice(symbol: string): Observable<any> {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&apikey=${this.apiKey}`;
     return this.http.get(url);
   }
+
+  
 
 
 

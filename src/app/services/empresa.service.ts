@@ -18,4 +18,12 @@ export class EmpresaService {
   addEmpresa(empresa: Empresa) {
     this.listEmpresas.push(empresa);
   }
+
+  deleteEmpresa(empresa: Empresa) {
+    var index =  this.listEmpresas.indexOf(empresa);
+    console.log(index);
+    this.listEmpresas.splice(index,1);
+    
+  }
+
 }

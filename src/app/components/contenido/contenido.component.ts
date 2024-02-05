@@ -19,9 +19,7 @@ export class ContenidoComponent implements OnInit {
   total: number | undefined; 
 
   listEmpresas: Empresa[] = [
-    { nombre: "Apple", ticker: "AAPL", precio: 150, acciones:10, per:30, invertido: 10000},
-    { nombre: "Coca-Cola", ticker: "KO", precio: 58, acciones:38, per:25, invertido: 1500},
-    { nombre: "Procter & Gamble", ticker: "PG", precio: 148, acciones:38, per:25, invertido: 2000}
+   
   ]
   
 
@@ -32,23 +30,18 @@ export class ContenidoComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    //Muestra las empresas
     this.listEmpresas = this.empresaService.getListEmpresas();
-
-    this.stockService.getStockQuote(this.symbol).subscribe(data => {
+    //Obtiene el precio
+    this.stockService.getStockPrice(this.symbol);
       // Accede a los datos de la cotización aquí
-      this.stockQuote = data;
+  
 
-    });
-
-    
 
     //Llama a la funcion calcularInvertido al inicio
-    this.listEmpresas.forEach(empresa => {
+    /*this.listEmpresas.forEach(empresa => {
       empresa.invertido = this.calcularInvertido(empresa);
-    });
-
-
+    });*/
 
     //Llama a la funcion calcularDividendo al inicio
     /*this.listEmpresas.forEach(empresa => {
@@ -86,10 +79,10 @@ export class ContenidoComponent implements OnInit {
 
 
   //Calcula el dinero invertido en una accion de una empresa
-  calcularInvertido(empresa: Empresa): number {
-    //var precio = this.stockService.getStockPrice(symbol);
+  /*calcularInvertido(empresa: Empresa): number {
+    var precio = this.stockService.getStockPrice(symbol);
     return empresa.acciones * empresa.precio;
-  }
+  }*/
 
 
 
@@ -105,8 +98,11 @@ export class ContenidoComponent implements OnInit {
   }*/
 
 
-  eliminarAccion(){
-
+  eliminarAccion(empresa: Empresa){
+    //this.empresaService.deleteEmpresa(empresa);
+    this.empresaService.deleteEmpresa(empresa);
+    // Actualiza la lista después de eliminar una empresa
+    this.listEmpresas = this.empresaService.getListEmpresas();
   }
 
 

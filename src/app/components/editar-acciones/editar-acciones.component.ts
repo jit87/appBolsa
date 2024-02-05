@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-editar-acciones',
@@ -10,14 +11,23 @@ import { Empresa } from '../../interfaces/Empresa';
 export class EditarAccionesComponent {
 
   agregarAccion: FormGroup;
-
-  constructor(private fb: FormBuilder, private empresaService: EmpresaService) {
+  StockPrice: number | undefined;
+  //symbol = 'AAPL';
+  
+  constructor(private fb: FormBuilder, private empresaService: EmpresaService,private stockService: StockService) {
     this.agregarAccion = this.fb.group({
       nombre: ['', Validators.required],
       ticker: ['', Validators.required],
       numero: [0, Validators.required] // Inicializa a 0 o el valor predeterminado que desees
     });
   }
+
+  /*ngOnInit():void{
+     // Obtiene el precio
+      this.stockService.getStockPrice(this.symbol).subscribe(data => {
+      this.StockPrice = data; // Asigna el precio a StockPrice
+    });
+  }*/
 
   addAccion() {
     if (this.agregarAccion.valid) {
@@ -33,6 +43,11 @@ export class EditarAccionesComponent {
       };
 
       this.empresaService.addEmpresa(nuevaEmpresa);
+
+      /*this.stockService.getStockPrice(this.symbol).subscribe(data => {
+        this.StockPrice = data;
+      });*/
+
     } else {
       // Puedes manejar la validación aquí si es necesario
       console.error('Form is invalid. Cannot proceed.');
