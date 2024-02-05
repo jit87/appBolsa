@@ -2,14 +2,12 @@
     <table  class="table table-hover mt-10">
       <thead>
         <tr>
-          <td style="font-weight: bold;">Nombre</td>
-          <td style="font-weight: bold;">Ticker</td>
-          <td style="font-weight: bold;">Precio</td>
-          <td style="font-weight: bold;">Número de acciones</td>
-          <td style="font-weight: bold;">PER</td>
-          <td style="font-weight: bold;">Total invertido</td>
-          <td style="font-weight: bold;">Yield %</td>
-          <td style="font-weight: bold;">Dividendos anuales</td> 
+          <td class="col-2" style="font-weight: bold;">Nombre</td>
+          <td class="col-2" style="font-weight: bold;">Ticker</td>
+          <td class="col-2" style="font-weight: bold;">Precio</td>
+          <td class="col-2" style="font-weight: bold;">Número de acciones</td>
+          <td class="col-2" style="font-weight: bold;">PER</td>
+          <td class="col-2" style="font-weight: bold;">Total invertido</td>
         </tr>
       </thead>
       <tbody>
@@ -20,8 +18,6 @@
           <td>{{ Empresa.acciones }}</td>
           <td>{{ Empresa.per }}</td>
           <td>{{ Empresa.invertido }}</td>
-          <td>{{ Empresa.yield }}</td>
-          <td>{{ Empresa.dividendos | number:'1.2-2' }}</td>
           <td>
             <button class="btn btn-primary btn-sm float-end">Editar</button>
           </td>

@@ -19,9 +19,9 @@ export class ContenidoComponent implements OnInit {
   total: number | undefined; 
 
   listEmpresas: Empresa[] = [
-    { nombre: "Apple", ticker: "AAPL", precio: 150, acciones:10, per:30, invertido: 10000,yield:1.2, dividendos:0},
-    { nombre: "Coca-Cola", ticker: "KO", precio: 58, acciones:38, per:25, invertido: 1500,yield:2.85, dividendos:40},
-    { nombre: "Procter & Gamble", ticker: "PG", precio: 148, acciones:38, per:25, invertido: 2000,yield:3.0, dividendos:0}
+    { nombre: "Apple", ticker: "AAPL", precio: 150, acciones:10, per:30, invertido: 10000},
+    { nombre: "Coca-Cola", ticker: "KO", precio: 58, acciones:38, per:25, invertido: 1500},
+    { nombre: "Procter & Gamble", ticker: "PG", precio: 148, acciones:38, per:25, invertido: 2000}
   ]
   
 
@@ -51,9 +51,9 @@ export class ContenidoComponent implements OnInit {
 
 
     //Llama a la funcion calcularDividendo al inicio
-    this.listEmpresas.forEach(empresa => {
+    /*this.listEmpresas.forEach(empresa => {
       empresa.dividendos = this.calcularDividendos(empresa);
-    });
+    });*/
 
    // this.getStockPrice();
   }
@@ -91,9 +91,9 @@ export class ContenidoComponent implements OnInit {
 
 
   //Calcula el total de dividendos en una accion de una empresa
-  calcularDividendos(empresa: Empresa): number {
+ /* calcularDividendos(empresa: Empresa): number {
     return empresa.invertido * (empresa.yield/100);
-  }
+  }*/
 
   //Vamos a calcular el total invertido de la cartera
   /*calcularTotalCartera(empresa:Empresa): number{

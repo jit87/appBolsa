@@ -28,8 +28,8 @@ export class EditarAccionesComponent {
         acciones: this.agregarAccion.get('numero')?.value || 0,
         per: 0,
         invertido: 0,
-        yield: 0,
-        dividendos: 0
+        //yield: 0,
+        //dividendos: 0
       };
 
       this.empresaService.addEmpresa(nuevaEmpresa);

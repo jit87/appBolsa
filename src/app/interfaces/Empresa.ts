@@ -7,8 +7,8 @@ export interface Empresa{
     acciones: number;
     per: number;
     invertido: number; 
-    yield: number; 
-    dividendos: number; 
+   // yield: number; 
+   // dividendos: number; 
 }
 
 
