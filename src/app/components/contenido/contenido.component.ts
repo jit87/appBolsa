@@ -23,7 +23,7 @@ export class ContenidoComponent implements OnInit {
   ]
   
 
-  constructor(private stockService: StockService, private empresaService: EmpresaService) {
+  constructor(private stockService: StockService, public empresaService: EmpresaService) {
   }
 
   
