@@ -17,7 +17,7 @@ export class StockService {
       console.warn('Error: El valor de "ticker" está vacío.');
       return of(0);
     }
-    //Primero busca en Alpha Vantage y si no hay datos en Polygon.io
+    //Primero busca en Alpha Vantage, y si no hay datos en Polygon.io
     return this.http.get<any>(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=full&apikey=${this.alphaVantageApiKey}`)
       .pipe(
         switchMap(alphaVantageResponse => {
@@ -60,7 +60,7 @@ export class StockService {
       return of(0);
     }
   
-    // Intentar obtener el PER desde Alpha Vantage
+    // Obtiene el PER desde Alpha Vantage
     return this.http.get<any>(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${this.alphaVantageApiKey}`)
       .pipe(
         switchMap(alphaVantageResponse => {
@@ -68,7 +68,7 @@ export class StockService {
           if (alphaVantagePER !== undefined) {
             return of(alphaVantagePER);
           } else {
-            // Intentar obtener el PER desde Polygon.io
+            // Obtiene el PER desde Polygon.io
             return this.http.get<any>(`https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`)
               .pipe(
                 switchMap(polygonResponse => {
@@ -102,7 +102,7 @@ export class StockService {
         return of('');
     }
 
-    // Intentar obtener la información de la empresa desde Polygon.io
+    // Obteniene la información de la empresa desde Polygon.io
     return this.http.get<any>(`https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`)
       .pipe(
         switchMap(polygonResponse => {

@@ -20,13 +20,11 @@ export class EditarAccionesComponent implements OnInit {
     this.agregarAccion = this.fb.group({
       nombre: ['', Validators.required],
       ticker: ['', Validators.required],
-      numero: [0, Validators.required] // Inicializa a 0 o el valor predeterminado que desees
+      numero: [0, Validators.required] 
     });
   }
 
-  ngOnInit(): void {
-    // Puedes inicializar valores adicionales si es necesario
-  }
+  ngOnInit(): void { }
 
   async addAccion() {
     if (this.agregarAccion.valid) {
@@ -35,13 +33,11 @@ export class EditarAccionesComponent implements OnInit {
 
         const precioObservable = this.stockService.getPrice(ticker);
         const precio = await lastValueFrom(precioObservable);
-
-        // Obtén el PER directamente, asegúrate de manejar errores según tus necesidades
-        //const perObservable = this.stockService.getPER(ticker);
-        //this.per = await lastValueFrom(perObservable);
-
         const industriaObservable = this.stockService.getIndustry(ticker);
         this.industria = await lastValueFrom(industriaObservable);
+
+         //const perObservable = this.stockService.getPER(ticker);
+        //this.per = await lastValueFrom(perObservable);
 
         const nuevaEmpresa: Empresa = {
           nombre: this.agregarAccion.get('nombre')?.value,
@@ -59,15 +55,13 @@ export class EditarAccionesComponent implements OnInit {
         this.agregarAccion.reset();
 
       } catch (error) {
-        console.error('Error al obtener el precio de la acción', error);
-        // Muestra un mensaje de error al usuario si es necesario
+        console.error('Error al obtener el precio de la acción', error);    
       }
     } else {
-      console.error('Formulario no válido. No se puede proceder.');
-      // Muestra un mensaje de error al usuario si es necesario
+      console.error('Formulario no válido. No se puede proceder.');  
     }
 
-    // Evitar que el formulario se envíe automáticamente
+    // Evita que el formulario se envíe automáticamente
     return false;
   }
 }

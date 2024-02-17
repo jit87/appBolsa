@@ -13,18 +13,15 @@ import { Empresa } from '../../interfaces/Empresa';
 
 
 export class ContenidoComponent implements OnInit {
-  symbol = ''; // Cambia este símbolo por el de la acción que desees
+  symbol = ''; 
   stockQuote: any;
   StockPrice: number | undefined;
   total: number | undefined; 
 
-  listEmpresas: Empresa[] = [
-   
-  ]
+  listEmpresas: Empresa[] = []
   
-
   constructor(private stockService: StockService, public empresaService: EmpresaService) {}
-
+  
 
   ngOnInit(): void {
     // Muestra las empresas

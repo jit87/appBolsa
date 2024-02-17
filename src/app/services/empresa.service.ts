@@ -8,9 +8,7 @@ import { Empresa } from '../interfaces/Empresa';
   providedIn: 'root'
 })
 export class EmpresaService {
-  private listEmpresas: Empresa[] = [
-    // ... tu lista actual de empresas
-  ];
+  private listEmpresas: Empresa[] = [];
 
   getListEmpresas(): Empresa[] {
     return this.listEmpresas;
