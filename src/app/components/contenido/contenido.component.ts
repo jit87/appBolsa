@@ -23,66 +23,27 @@ export class ContenidoComponent implements OnInit {
   ]
   
 
-  constructor(private stockService: StockService, public empresaService: EmpresaService) {
-  }
+  constructor(private stockService: StockService, public empresaService: EmpresaService) {}
 
-  
 
 
   ngOnInit(): void {
-    //Muestra las empresas
+    // Muestra las empresas
     this.listEmpresas = this.empresaService.getListEmpresas();
-    //Obtiene el precio
-    this.stockService.getStockPrice(this.symbol);
-      // Accede a los datos de la cotización aquí
   
-
-
-    //Llama a la funcion calcularInvertido al inicio
-    /*this.listEmpresas.forEach(empresa => {
-      empresa.invertido = this.calcularInvertido(empresa);
-    });*/
-
-    //Llama a la funcion calcularDividendo al inicio
-    /*this.listEmpresas.forEach(empresa => {
-      empresa.dividendos = this.calcularDividendos(empresa);
-    });*/
-
-   // this.getStockPrice();
+    // Obtiene y asigna el precio a StockPrice
+    this.stockService.getPrice(this.symbol).subscribe((data: any) => {
+      this.StockPrice = data.price;
+    });
   }
 
 
-  /*
-  function getStockPrice(symbol:symbol):number { 
-    var url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=your_api_key_here`;
-  
-    // Realizamos una solicitud HTTP para obtener los datos del precio de las acciones
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        // Extraemos el precio de cierre de la última entrada de datos
-        const lastDataPoint = data['Time Series (5min)'][Object.keys(data['Time Series (5min)'])[0]];
-        const stockPrice = parseFloat(lastDataPoint['4. close']);
-  
-        // Imprimimos el precio de las acciones
-        console.log('Precio de la acción:', stockPrice);
-        return stockPrice; 
-      })
-      .catch(error => {
-        console.error('Error al obtener el precio de las acciones:', error);
-      });
-
-
-  }*/
-
-
-
-
   //Calcula el dinero invertido en una accion de una empresa
-  /*calcularInvertido(empresa: Empresa): number {
-    var precio = this.stockService.getStockPrice(symbol);
-    return empresa.acciones * empresa.precio;
-  }*/
+  calcularInvertido(empresa: Empresa): number {
+    var precio = this.stockService.getPrice(this.symbol);
+    const precioNumerico = parseInt(precio.toString(), 10);
+    return empresa.acciones * precioNumerico;
+  }
 
 
 

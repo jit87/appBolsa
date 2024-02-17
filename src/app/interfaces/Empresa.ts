@@ -1,9 +1,11 @@
 import { StockService } from "../services/stock.service";
+import { Observable } from 'rxjs';
+
 
 export interface Empresa{
     nombre: string;
     ticker: string;
-    precio: number;
+    precio: number | Observable<number>;
     acciones: number;
     per: number;
     invertido: number; 

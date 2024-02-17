@@ -14,7 +14,7 @@ import { ContenidoComponent } from './components/contenido/contenido.component';
 import { EditarAccionesComponent } from './components/editar-acciones/editar-acciones.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmpresaService } from './services/empresa.service';
-
+import { StockService } from './services/stock.service'; 
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { EmpresaService } from './services/empresa.service';
     ReactiveFormsModule,
     APP_ROUTING
   ],
-  providers: [EmpresaService],
+  providers: [EmpresaService,StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
