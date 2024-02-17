@@ -13,7 +13,7 @@ import { Empresa } from '../../interfaces/Empresa';
 
 
 export class ContenidoComponent implements OnInit {
-  symbol = 'AAPL'; // Cambia este símbolo por el de la acción que desees
+  symbol = ''; // Cambia este símbolo por el de la acción que desees
   stockQuote: any;
   StockPrice: number | undefined;
   total: number | undefined; 
