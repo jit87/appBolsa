@@ -26,37 +26,19 @@ export class ContenidoComponent implements OnInit {
   constructor(private stockService: StockService, public empresaService: EmpresaService) {}
 
 
-
   ngOnInit(): void {
     // Muestra las empresas
     this.listEmpresas = this.empresaService.getListEmpresas();
-  
-    // Obtiene y asigna el precio a StockPrice
-    this.stockService.getPrice(this.symbol).subscribe((data: any) => {
-      this.StockPrice = data.price;
-    });
+
+    // Verifica si el símbolo está presente antes de obtener el precio
+    if (this.symbol) {
+      // Obtiene y asigna el precio a StockPrice
+      this.stockService.getPrice(this.symbol).subscribe((data: any) => {
+        this.StockPrice = data.price;
+      });
+    } 
+    
   }
-
-
-  //Calcula el dinero invertido en una accion de una empresa
-  calcularInvertido(empresa: Empresa): number {
-    var precio = this.stockService.getPrice(this.symbol);
-    const precioNumerico = parseInt(precio.toString(), 10);
-    return empresa.acciones * precioNumerico;
-  }
-
-
-
-  //Calcula el total de dividendos en una accion de una empresa
- /* calcularDividendos(empresa: Empresa): number {
-    return empresa.invertido * (empresa.yield/100);
-  }*/
-
-  //Vamos a calcular el total invertido de la cartera
-  /*calcularTotalCartera(empresa:Empresa): number{
-    this.total = this.total + empresa.invertido; 
-    return this.total; 
-  }*/
 
 
   eliminarAccion(empresa: Empresa){
@@ -66,10 +48,7 @@ export class ContenidoComponent implements OnInit {
     this.listEmpresas = this.empresaService.getListEmpresas();
   }
 
-
-
-
-
+  
   
 
 }

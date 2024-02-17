@@ -6,8 +6,9 @@
           <td class="col-2" style="font-weight: bold;">Ticker</td>
           <td class="col-2" style="font-weight: bold;">Precio</td>
           <td class="col-2" style="font-weight: bold;">Número de acciones</td>
-          <td class="col-2" style="font-weight: bold;">PER</td>
+          <!--<td class="col-2" style="font-weight: bold;">PER</td>-->
           <td class="col-2" style="font-weight: bold;">Total invertido</td>
+          <td class="col-2" style="font-weight: bold;">Industria</td>
         </tr>
       </thead>
       <tbody>
@@ -16,8 +17,9 @@
           <td>{{ Empresa.ticker | uppercase}}</td>
           <td>{{ Empresa.precio }}</td>
           <td>{{ Empresa.acciones }}</td>
-          <td>{{ Empresa.per }}</td>
+          <!--<td>{{ Empresa.per }}</td>-->
           <td>{{ Empresa.invertido }}</td>
+          <td>{{ Empresa.industria }}</td>
           <td>
             <button class="btn btn-primary btn-sm float-end">Editar</button>
           </td>

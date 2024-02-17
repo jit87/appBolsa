@@ -7,8 +7,9 @@ export interface Empresa{
     ticker: string;
     precio: number | Observable<number>;
     acciones: number;
-    per: number;
+    //per: number; 
     invertido: number; 
+    industria: string; 
    // yield: number; 
    // dividendos: number; 
 }
