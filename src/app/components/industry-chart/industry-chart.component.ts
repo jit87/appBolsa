@@ -6,6 +6,6 @@ import { ContenidoComponent } from '../contenido/contenido.component';
   selector: 'app-industry-chart',
   templateUrl: './industry-chart.component.html',
 })
-export class IndustryChartComponent extends ContenidoComponent {
+export class IndustryChartComponent {
  
 }

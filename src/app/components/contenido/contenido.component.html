@@ -5,7 +5,6 @@
       <th style="font-weight: bold;">Ticker</th>
       <th style="font-weight: bold;">Precio</th>
       <th style="font-weight: bold;">Número de acciones</th>
-      <!--<th style="font-weight: bold;">PER</th>-->
       <th style="font-weight: bold;">Total invertido</th>
       <th style="font-weight: bold;">Industria</th>
       <th style="font-weight: bold;">Acciones</th>
@@ -17,7 +16,6 @@
       <td>{{ Empresa.ticker | uppercase}}</td>
       <td>{{ Empresa.precio }}</td>
       <td>{{ Empresa.acciones }}</td>
-      <!--<td>{{ Empresa.per }}</td>-->
       <td>{{ Empresa.invertido }}</td>
       <td>{{ Empresa.industria }}</td>
       <td>
@@ -27,6 +25,11 @@
     </tr>
   </tbody>
 </table>
+
+<!-- Muestra la suma total debajo de la tabla -->
+<div style="text-align: center; margin-top: 20px; margin-bottom: 50px;">
+  <h5 style="color:white;" *ngIf="this.calcularTotalInvertido();">Total invertido: {{ this.totalAcciones }}</h5>
+</div>
 
 <div *ngIf="listEmpresas.length == 0" style="text-align: center; margin-top: 20px; margin-bottom: 50px;">
   <h5 style="color:white;">No hay acciones introducidas</h5>

@@ -4,18 +4,18 @@ import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
 import { StockService } from '../../services/stock.service';
 import { lastValueFrom } from 'rxjs';
+import { ContenidoComponent } from '../contenido/contenido.component';
 
 @Component({
   selector: 'app-editar-acciones',
   templateUrl: './editar-acciones.component.html',
 })
-export class EditarAccionesComponent implements OnInit {
+export class EditarAccionesComponent  implements OnInit {
 
   agregarAccion: FormGroup;
   StockPrice: number | undefined;
   per: number | undefined;
-  industria: string | undefined; 
-  mostrarGrafico = false;
+  industria: string | undefined;  
 
   constructor(private fb: FormBuilder, private empresaService: EmpresaService, private stockService: StockService) {
     this.agregarAccion = this.fb.group({
@@ -36,7 +36,7 @@ export class EditarAccionesComponent implements OnInit {
         const precio = await lastValueFrom(precioObservable);
         const industriaObservable = this.stockService.getIndustry(ticker);
         this.industria = await lastValueFrom(industriaObservable);
-
+     
          //const perObservable = this.stockService.getPER(ticker);
         //this.per = await lastValueFrom(perObservable);
 
@@ -54,9 +54,7 @@ export class EditarAccionesComponent implements OnInit {
 
         // Reinicia el formulario después de agregar una acción con éxito
         this.agregarAccion.reset();
-        // Después de agregar la acción con éxito, establece mostrarGrafico en true
-        this.mostrarGrafico = true;
-
+        
       } catch (error) {
         console.error('Error al obtener el precio de la acción', error);    
       }
@@ -67,4 +65,11 @@ export class EditarAccionesComponent implements OnInit {
     // Evita que el formulario se envíe automáticamente
     return false;
   }
+
+
+
+
+
+
+
 }
