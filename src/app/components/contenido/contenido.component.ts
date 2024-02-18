@@ -9,7 +9,7 @@ import { Chart } from 'chart.js/auto';
   templateUrl: './contenido.component.html',
 })
 
-export class ContenidoComponent implements OnInit /*, AfterViewInit*/ {
+export class ContenidoComponent implements OnInit , AfterViewInit {
   symbol = ''; 
   stockQuote: any;
   StockPrice: number | undefined;
@@ -38,22 +38,22 @@ export class ContenidoComponent implements OnInit /*, AfterViewInit*/ {
     }
   }
 
-  /*ngAfterViewInit() {
+  ngAfterViewInit() {
     // Espera hasta que el DOM esté listo antes de intentar crear el gráfico
     setTimeout(() => {
       if (!this.mostrarGrafico) {
         this.createSectorChart();
       }
     });
-  }*/
+  }
 
   eliminarAccion(empresa: Empresa) {
     this.empresaService.deleteEmpresa(empresa);
     this.listEmpresas = this.empresaService.getListEmpresas();
-   /* this.createSectorChart();*/
+    this.createSectorChart();
   }
 
-  /*private createSectorChart() {
+  private createSectorChart() {
     const totalInversion = this.getTotalInversion();
     this.sectorData = this.getSectorData();
 
@@ -80,10 +80,10 @@ export class ContenidoComponent implements OnInit /*, AfterViewInit*/ {
       // Detectar cambios y asegurarse de que la vista se ha actualizado
       this.cdr.detectChanges();
     }
-  }*/
+  }
 
   // Función para obtener la inversión total
-  /*private getTotalInversion(): number {
+  private getTotalInversion(): number {
     return this.empresaService.getListEmpresas().reduce((total, empresa) => total + empresa.invertido, 0);
   }
 
@@ -98,11 +98,9 @@ export class ContenidoComponent implements OnInit /*, AfterViewInit*/ {
     });
 
     // Convertir a formato de array
-    return Object.entries(sectorData).map(([label, value]) => ({ label, value }));*/
+    return Object.entries(sectorData).map(([label, value]) => ({ label, value }));
 
 
-
-
-    
   }
 
+}
