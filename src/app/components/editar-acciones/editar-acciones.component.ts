@@ -15,6 +15,7 @@ export class EditarAccionesComponent implements OnInit {
   StockPrice: number | undefined;
   per: number | undefined;
   industria: string | undefined; 
+  mostrarGrafico = false;
 
   constructor(private fb: FormBuilder, private empresaService: EmpresaService, private stockService: StockService) {
     this.agregarAccion = this.fb.group({
@@ -53,6 +54,8 @@ export class EditarAccionesComponent implements OnInit {
 
         // Reinicia el formulario después de agregar una acción con éxito
         this.agregarAccion.reset();
+        // Después de agregar la acción con éxito, establece mostrarGrafico en true
+        this.mostrarGrafico = true;
 
       } catch (error) {
         console.error('Error al obtener el precio de la acción', error);    

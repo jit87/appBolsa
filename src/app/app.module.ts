@@ -14,7 +14,8 @@ import { ContenidoComponent } from './components/contenido/contenido.component';
 import { EditarAccionesComponent } from './components/editar-acciones/editar-acciones.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmpresaService } from './services/empresa.service';
-import { StockService } from './services/stock.service'; 
+import { StockService } from './services/stock.service';
+import { IndustryChartComponent } from './components/industry-chart/industry-chart.component'; 
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { StockService } from './services/stock.service';
     NavbarComponent,
     ContenidoComponent,
     EditarAccionesComponent,
+    IndustryChartComponent,
   ],
   imports: [
     BrowserModule,
