@@ -8,7 +8,7 @@ export class StockService {
 
   //Claves
   private readonly alphaVantageApiKey = '22CEAEX0ALRYWVGC';
-  private readonly polygonApiKey = 'RyUZfnDxPi7qX9OqVAoTFiwIKwzkr8U0'; // Reemplaza con tu clave de API de Polygon.io
+  private readonly polygonApiKey = 'RyUZfnDxPi7qX9OqVAoTFiwIKwzkr8U0'; 
 
   constructor(private http: HttpClient) {}
 
@@ -53,7 +53,7 @@ export class StockService {
   }
 
 
-  
+  /*
   getPER(ticker: string): Observable<number> {
     if (!ticker) {
       console.warn('Error: El valor de "ticker" está vacío.');
@@ -93,7 +93,7 @@ export class StockService {
           return of(0);
         })
       );
-  }
+  }*/
   
 
   getIndustry(ticker: string): Observable<string> {
