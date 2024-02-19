@@ -54,6 +54,7 @@ export class EditarAccionesComponent  implements OnInit {
 
         // Reinicia el formulario después de agregar una acción con éxito
         this.agregarAccion.reset();
+
         
       } catch (error) {
         console.error('Error al obtener el precio de la acción', error);    

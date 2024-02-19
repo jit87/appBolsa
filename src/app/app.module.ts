@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ObjectKeysPipe } from './object-keys.pipe';
+import { GoogleChartsModule } from 'angular-google-charts';
+
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
@@ -18,6 +20,7 @@ import { StockService } from './services/stock.service';
 import { IndustryChartComponent } from './components/industry-chart/industry-chart.component'; 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,8 @@ import { IndustryChartComponent } from './components/industry-chart/industry-cha
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    APP_ROUTING
+    APP_ROUTING,
+    GoogleChartsModule
   ],
   providers: [EmpresaService,StockService],
   bootstrap: [AppComponent]
