@@ -18,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EmpresaService } from './services/empresa.service';
 import { StockService } from './services/stock.service';
 import { IndustryChartComponent } from './components/industry-chart/industry-chart.component'; 
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { IndustryChartComponent } from './components/industry-chart/industry-cha
     HttpClientModule,
     ReactiveFormsModule,
     APP_ROUTING,
-    GoogleChartsModule
+    GoogleChartsModule,
+    FormsModule
   ],
   providers: [EmpresaService,StockService],
   bootstrap: [AppComponent]

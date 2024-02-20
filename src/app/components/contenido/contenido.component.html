@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let Empresa of listEmpresas">
+        <tr *ngFor="let Empresa of listEmpresas; let i = index">
           <td>{{ Empresa.nombre }}</td>
           <td>{{ Empresa.ticker | uppercase}}</td>
           <td>{{ Empresa.precio }}</td>
@@ -29,14 +29,13 @@
     </table>
   </div>
 
-  <!-- Muestra la suma total debajo de la tabla -->
   <div class="text-right" style="margin-top: 20px; margin-right: 20px;">
     <h5 style="color: white;" *ngIf="this.calcularTotalInvertido();">Total invertido: {{ this.totalAcciones }}</h5>
   </div>
 
-  <div *ngIf="listEmpresas.length == 0" style="text-align: center; margin-top: 20px; margin-bottom: 50px;">
-    <h5 style="color: white;">No hay acciones introducidas</h5>
+    <div *ngIf="listEmpresas.length == 0" style="text-align: center; margin-top: 20px; margin-bottom: 50px;">
+      <h5 style="color: white;">No hay acciones introducidas</h5>
+    </div>
+  
+    <button class="btn btn-primary btn-sm mt-3 ml-2" [routerLink]="['editar-acciones']">Añadir acción</button>
   </div>
-
-  <button class="btn btn-primary btn-sm mt-3 ml-2" [routerLink]="['editar-acciones']">Añadir acción</button>
-</div>

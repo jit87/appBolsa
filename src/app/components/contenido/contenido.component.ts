@@ -17,6 +17,7 @@ export class ContenidoComponent implements OnInit  {
   total: number | undefined; 
   listEmpresas: Empresa[] = []
   totalAcciones: number | undefined;
+  Empresa: Empresa | undefined; 
   
   constructor(
     private stockService: StockService,
@@ -29,9 +30,9 @@ export class ContenidoComponent implements OnInit  {
   chart: any;
   sectorData: { label: string; value: number }[] = [];
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.listEmpresas = this.empresaService.getListEmpresas();
-    // Verifica si el símbolo está presente antes de obtener el precio
+    // Verifica si el Ticker está presente antes de obtener el precio
     if (this.symbol) {
       // Obtiene y asigna el precio a StockPrice
       this.stockService.getPrice(this.symbol).subscribe((data: any) => {
@@ -42,29 +43,32 @@ export class ContenidoComponent implements OnInit  {
   }
 
 
- eliminarAccion(empresa: Empresa) {
+
+  eliminarAccion(empresa: Empresa) {
     this.empresaService.deleteEmpresa(empresa);
     this.listEmpresas = this.empresaService.getListEmpresas();
     //Si eliminamos una empresa volvemos a calcular el total invertido
     this.calcularTotalInvertido();
   }
 
- 
-
- calcularTotalInvertido(){
+  calcularTotalInvertido(){
     var empresas = this.empresaService.getListEmpresas(); 
     var total = 0;
   
-      empresas.forEach(element => {
-          total = total + element.invertido; 
-      });
+    empresas.forEach(element => {
+        total = total + element.invertido; 
+    });
   
     return this.totalAcciones = total; 
-  
-   }
+  }
+
+ 
 
 
 
-  
+
+
+
+
 
 }
