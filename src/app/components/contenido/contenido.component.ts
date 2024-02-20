@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
-import { Chart } from 'chart.js/auto'; 
-import { EditarAccionesComponent } from '../editar-acciones/editar-acciones.component';
+
 
 @Component({
   selector: 'app-contenido',
@@ -22,13 +21,14 @@ export class ContenidoComponent implements OnInit  {
   constructor(
     private stockService: StockService,
     public empresaService: EmpresaService,
-    private cdr: ChangeDetectorRef
   ) {
    
   }
 
   chart: any;
   sectorData: { label: string; value: number }[] = [];
+
+  
 
   ngOnInit(): void {
     this.listEmpresas = this.empresaService.getListEmpresas();
@@ -50,6 +50,8 @@ export class ContenidoComponent implements OnInit  {
     //Si eliminamos una empresa volvemos a calcular el total invertido
     this.calcularTotalInvertido();
   }
+
+
 
   calcularTotalInvertido(){
     var empresas = this.empresaService.getListEmpresas(); 
