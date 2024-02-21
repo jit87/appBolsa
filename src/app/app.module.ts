@@ -5,6 +5,8 @@ import { ObjectKeysPipe } from './object-keys.pipe';
 import { GoogleChartsModule } from 'angular-google-charts';
 
 
+
+
 //Rutas
 import { APP_ROUTING } from './app.routes';
 
@@ -19,6 +21,7 @@ import { EmpresaService } from './services/empresa.service';
 import { StockService } from './services/stock.service';
 import { IndustryChartComponent } from './components/industry-chart/industry-chart.component'; 
 import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({

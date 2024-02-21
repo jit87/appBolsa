@@ -4,7 +4,12 @@ import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
 import { StockService } from '../../services/stock.service';
 import { lastValueFrom } from 'rxjs';
+import { ViewChild } from '@angular/core';
 import { ContenidoComponent } from '../contenido/contenido.component';
+import { FormControl } from '@angular/forms';
+import { catchError, switchMap,debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-editar-acciones',
@@ -16,6 +21,8 @@ export class EditarAccionesComponent  implements OnInit {
   StockPrice: number | undefined;
   per: number | undefined;
   industria: string | undefined;  
+  @ViewChild('buscarTexto') buscarTexto: HTMLInputElement | undefined;
+
 
   constructor(private fb: FormBuilder, private empresaService: EmpresaService, private stockService: StockService) {
     this.agregarAccion = this.fb.group({
@@ -25,7 +32,14 @@ export class EditarAccionesComponent  implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+
+  
+
+  ngOnInit(): void {
+    
+   }
+
+
 
   async addAccion() {
     if (this.agregarAccion.valid) {
@@ -66,6 +80,39 @@ export class EditarAccionesComponent  implements OnInit {
     // Evita que el formulario se envíe automáticamente
     return false;
   }
+
+
+
+
+  searchEmpresa(nombre: string): void {
+    this.stockService.getName(nombre).subscribe({
+      next: resultado => {
+        console.log(resultado);
+        if (nombre === (this.buscarTexto?.value || '')) {
+          this.updateInput(resultado);
+        }
+      },
+      error: error => {
+        console.error('Error al obtener el nombre de la empresa:', error);
+      }
+    });
+  }
+  
+
+
+
+  updateInput(nombreEmpresa: string): void {
+    const nombreActual = this.agregarAccion?.get('nombre')?.value;
+
+    // Actualiza el valor solo si el campo está vacío
+    if (!nombreActual) {
+      this.agregarAccion?.get('nombre')?.setValue(nombreEmpresa);
+    }
+
+  }
+  
+
+  
 
 
 

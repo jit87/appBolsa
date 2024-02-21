@@ -10,7 +10,11 @@ export class StockService {
   private readonly alphaVantageApiKey = '22CEAEX0ALRYWVGC';
   private readonly polygonApiKey = 'RyUZfnDxPi7qX9OqVAoTFiwIKwzkr8U0'; 
 
+
   constructor(private http: HttpClient) {}
+
+
+  //Getters
 
   getPrice(ticker: string): Observable<number> {
     if (!ticker) {
@@ -53,55 +57,12 @@ export class StockService {
   }
 
 
-  /*
-  getPER(ticker: string): Observable<number> {
-    if (!ticker) {
-      console.warn('Error: El valor de "ticker" está vacío.');
-      return of(0);
-    }
-  
-    // Obtiene el PER desde Alpha Vantage
-    return this.http.get<any>(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${this.alphaVantageApiKey}`)
-      .pipe(
-        switchMap(alphaVantageResponse => {
-          const alphaVantagePER = alphaVantageResponse?.['PERatio'];
-          if (alphaVantagePER !== undefined) {
-            return of(alphaVantagePER);
-          } else {
-            // Obtiene el PER desde Polygon.io
-            return this.http.get<any>(`https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`)
-              .pipe(
-                switchMap(polygonResponse => {
-                  const polygonPER = polygonResponse?.results?.[0]?.peratio;
-                  if (polygonPER !== undefined) {
-                    console.log("PER obtenido desde Polygon.io: ", polygonPER);
-                    return of(polygonPER);
-                  } else {
-                    console.error("Error: No se pudo obtener el PER de la acción desde Alpha Vantage ni Polygon.io");
-                    return of(0);
-                  }
-                }),
-                catchError(polygonError => {
-                  console.error("Error al obtener el PER de la acción desde Polygon.io", polygonError);
-                  return of(0);
-                })
-              );
-          }
-        }),
-        catchError((error: HttpErrorResponse) => {
-          console.error("Error al obtener el PER de la acción desde Alpha Vantage", error);
-          return of(0);
-        })
-      );
-  }*/
-  
 
   getIndustry(ticker: string): Observable<string> {
     if (!ticker) {
         console.warn('Error: El valor de "ticker" está vacío.');
         return of('');
     }
-
     // Obteniene la información de la empresa desde Polygon.io
     return this.http.get<any>(`https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`)
       .pipe(
@@ -123,5 +84,43 @@ export class StockService {
   }
 
 
+  getName(nombre: string): Observable<string> {
+    if (nombre.length < 3) {
+      console.log("La búsqueda requiere al menos tres letras.");
+      return of('');
+    }
+    const polygonUrl = `https://api.polygon.io/v3/reference/tickers?search=${nombre}&active=true&apiKey=${this.polygonApiKey}`;
+
+    return this.http.get<any>(polygonUrl).pipe(
+      switchMap(polygonResponse => {
+        const results = polygonResponse?.results;
   
+        if (results && results.length > 0) {
+          const polygonName = results[0].name;
+          console.log("Nombre obtenido desde Polygon.io: ", polygonName);
+          return of(polygonName);
+        } else {
+          console.error("Error: No se pudo obtener el nombre de la acción desde Polygon.io");
+          return of(''); // o throwError("No se encontraron resultados");
+        }
+      }),
+      catchError(polygonError => {
+        console.error("Error al obtener el nombre de la acción desde Polygon.io", polygonError);
+  
+        if (polygonError instanceof HttpErrorResponse) {
+          if (polygonError.status === 429) {
+            console.error("Error 429: Límite de velocidad alcanzado. Reduce la frecuencia de las solicitudes.");
+          }
+        }
+  
+        return of(''); // o throwError("Error en la solicitud a Polygon.io");
+      })
+    );
+  }
+  
+
 }
+
+
+  
+

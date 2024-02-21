@@ -5,7 +5,7 @@
       <button class="btn" style="margin-left: 92.5%; cursor: pointer;" [routerLink]="['']">X</button>
       <div class="mb-3">
         <label class="form-label">Nombre de la acción</label>
-        <input formControlName="nombre" type="text" class="form-control">
+        <input formControlName="nombre" type="text" class="form-control" (keyup)="searchEmpresa(buscarTexto.value)" #buscarTexto>
       </div>
       <div class="mb-3">
         <label class="form-label">Ticker</label>
