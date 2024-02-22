@@ -84,9 +84,9 @@ export class ContenidoComponent implements OnInit  {
 
   //CONSULTAS
   
-  getInfoEmpresa(empresa:string){
+  getInfoEmpresa(ticker:string){
   
-    this.router.navigate(['/buscar',empresa]);
+    this.router.navigate(['/buscar',ticker]);
 
   }
 

@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let Empresa of listEmpresas">
-          <td (click)="getInfoEmpresa(Empresa.nombre)" type="text" style="cursor: pointer;text-decoration: underline;">{{ Empresa.nombre }}</td>
+          <td (click)="getInfoEmpresa(Empresa.ticker)" type="text" style="cursor: pointer;text-decoration: underline;">{{ Empresa.nombre }}</td>
           <td>{{ Empresa.ticker | uppercase}}</td>
           <td>{{ Empresa.precio }}</td>
           <td>{{ Empresa.acciones }}</td>

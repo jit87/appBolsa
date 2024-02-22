@@ -1,0 +1,34 @@
+body {
+    background-color: #212529; /* Fondo principal más oscuro */
+    color: white; /* Texto blanco */
+}
+
+.container {
+    background-color: #343a40; /* Fondo de la tarjeta más oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+h1, h2 {
+    color: white; /* Encabezados en blanco */
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #adb5bd; /* Color del texto principal */
+}
+
+a {
+    color: #17a2b8; /* Color del enlace */
+}
+
+.tags {
+    margin-bottom: 0; /* Elimina el margen inferior de las etiquetas */
+}

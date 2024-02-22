@@ -8,7 +8,7 @@ import { BuscadorEmpresaComponent } from "./components/buscador-empresa/buscador
 const APP_ROUTES: Routes = [
     { path:'contenido', component: ContenidoComponent},
     { path:'editar-acciones', component: EditarAccionesComponent},
-    { path:'buscar/:empresa', component: BuscadorEmpresaComponent},
+    { path:'buscar/:ticker', component: BuscadorEmpresaComponent},
     { path:'**', pathMatch: 'full', redirectTo: 'contenido'}
 ];
 

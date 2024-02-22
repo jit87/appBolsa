@@ -4,53 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información de la Empresa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .company-info {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            max-width: 100px;
-            max-height: 100px;
-        }
-
-        .tags {
-            margin-top: 10px;
-            font-style: italic;
-            color: #666;
-        }
-
-        .similar-companies {
-            margin-top: 10px;
-        }
-    </style>
+    <!-- Incluye Bootstrap aquí -->
 </head>
 <body>
-
-    <div class="company-info">
-        <img class="logo" src="https://s3.polygon.io/logos/aapl/logo.png" alt="Company Logo">
-        <h1>Apple Inc.</h1>
-        <p><strong>Symbol:</strong> AAPL</p>
-        <p><strong>Industry:</strong> Computer Hardware</p>
-        <p><strong>Sector:</strong> Technology</p>
-        <p><strong>CEO:</strong> Timothy D. Cook</p>
-        <p><strong>Employees:</strong> 123,000</p>
-        <p><strong>Market Cap:</strong> $908,316,631,180</p>
-        <p><strong>Phone:</strong> +1 408 996-1010</p>
-        <p><strong>Website:</strong> <a href="http://www.apple.com" target="_blank">http://www.apple.com</a></p>
-        <p><strong>Address:</strong> 1 Infinite Loop Cupertino CA, 95014, USA</p>
-        <p><strong>Description:</strong> Apple Inc. designs, manufactures, and markets mobile communication and media devices and personal computers, and sells a variety of related software, services, accessories, networking solutions, and third-party digital content and applications.</p>
-        <p class="tags"><strong>Tags:</strong> Technology, Consumer Electronics, Computer Hardware</p>
+    <div class="container mt-4 mb-4">
+        <h2>Información de la empresa:</h2>
+        <img class="logo" src="{{ logo }}" alt="Company Logo">
+        <h2 class="mt-3">{{ name }}</h2>
+        <p><strong>Símbolo:</strong> {{ symbol }}</p>
+        <p><strong>Industria:</strong> {{ industry }}</p>
+        <p><strong>Sector:</strong> {{ sector }}</p>
+        <p><strong>Bolsa:</strong> {{ bolsa }}</p>
+        <p><strong>CEO:</strong> {{ CEO }}</p>
+        <p><strong>Empleados:</strong> {{ employees }}</p>
+        <p><strong>Market Cap:</strong> {{ marketCap }}</p>
+        <p><strong>Teléfono:</strong> {{ phone }}</p>
+        <p><strong>Web:</strong> <a href="{{ website }}" target="_blank"> {{ website }}</a></p>
+        <p><strong>Dirección:</strong> {{ address }}</p>
+        <p><strong>Descripción:</strong> {{ description }}</p>
+        <p class="tags"><strong>Tags:</strong> {{ tags }}</p>
         <div class="similar-companies">
-            <p><strong>Similar Companies:</strong> MSFT, NOK, IBM, HPQ, GOOGL, BB, XLK</p>
+            <p><strong>Empresas Similares:</strong> {{ similarCompanies }}</p>
         </div>
     </div>
 

@@ -35,7 +35,6 @@ export class StockService {
               switchMap(polygonResponse => {
                 const polygonPrice = polygonResponse?.results?.[0]?.c;
                   if (polygonPrice !== undefined) {
-                    console.log("Precio obtenido desde Polygon.io: ", polygonPrice);
                     return of(polygonPrice);
                   } else {
                     console.error("Error: No se pudo obtener el precio de la acción desde Polygon.io");
@@ -69,7 +68,6 @@ export class StockService {
         switchMap(polygonResponse => {
           const industry = polygonResponse?.industry;
           if (industry !== undefined) {
-            console.log("Industria obtenida desde Polygon.io: ", industry);
             return of(industry);
           } else {
             console.error("Error: No se pudo obtener la industria de la acción desde Polygon.io");
@@ -97,7 +95,6 @@ export class StockService {
   
         if (results && results.length > 0) {
           const polygonName = results[0].name;
-          console.log("Nombre obtenido desde Polygon.io: ", polygonName);
           return of(polygonName);
         } else {
           console.error("Error: No se pudo obtener el nombre de la acción desde Polygon.io");
@@ -117,6 +114,37 @@ export class StockService {
       })
     );
   }
+
+
+  
+  getData(ticker: string): Observable<string> {
+                        
+    const polygonUrl = `https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`;
+    console.log('URL:', polygonUrl);
+
+    return this.http.get<any>(polygonUrl).pipe(
+      switchMap(polygonResponse => {
+        if (polygonResponse) {
+          return of(polygonResponse);
+        } else {
+          console.error("Error: No se pudo obtener los datos de la acción desde Polygon.io");
+          return of(''); // o throwError("No se encontraron resultados");
+        }
+      }),
+      catchError(polygonError => {
+        console.error("Error al obtener el nombre de la acción desde Polygon.io", polygonError);
+    
+        if (polygonError instanceof HttpErrorResponse) {
+          if (polygonError.status === 429) {
+            console.error("Error 429: Límite de velocidad alcanzado. Reduce la frecuencia de las solicitudes.");
+          }
+        }
+    
+        return of(''); 
+      })
+    );
+  }
+  
   
 
 }
