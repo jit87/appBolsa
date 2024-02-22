@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class ContenidoComponent implements OnInit  {
   constructor(
     private stockService: StockService,
     public empresaService: EmpresaService,
+    private router: Router
   ) {
    
   }
@@ -43,6 +45,8 @@ export class ContenidoComponent implements OnInit  {
   }
 
 
+   
+  //ACCIONES Y CALCULOS
 
   eliminarAccion(empresa: Empresa) {
     this.empresaService.deleteEmpresa(empresa);
@@ -63,6 +67,31 @@ export class ContenidoComponent implements OnInit  {
   
     return this.totalAcciones = total; 
   }
+
+  
+  // Variable para controlar la visibilidad del formulario de edición
+  mostrarFormularioEdicion: boolean = false;
+  
+  mostrarFormulario() {
+     this.mostrarFormularioEdicion = true;
+   }
+
+  cerrarFormulario() {
+    this.mostrarFormularioEdicion = false;
+  }
+
+
+
+  //CONSULTAS
+  
+  getInfoEmpresa(empresa:string){
+  
+    this.router.navigate(['/buscar',empresa]);
+
+  }
+
+
+  
 
  
 

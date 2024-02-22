@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../interfaces/Empresa';
@@ -39,7 +39,9 @@ export class EditarAccionesComponent  implements OnInit {
     
    }
 
+  
 
+  //ACCIONES Y CALCULOS
 
   async addAccion() {
     if (this.agregarAccion.valid) {
@@ -83,6 +85,25 @@ export class EditarAccionesComponent  implements OnInit {
 
 
 
+  updateInput(nombreEmpresa: string): void {
+    const nombreActual = this.agregarAccion?.get('nombre')?.value;
+
+    // Actualiza el valor solo si el campo está vacío
+    if (!nombreActual) {
+      this.agregarAccion?.get('nombre')?.setValue(nombreEmpresa);
+    }
+
+  }
+
+  // Evento para notificar el cierre del formulario
+  @Output() cerrarFormulario = new EventEmitter<void>();
+
+  cerrar() {
+    this.cerrarFormulario.emit();
+  }
+
+
+  //CONSULTAS
 
   searchEmpresa(nombre: string): void {
     this.stockService.getName(nombre).subscribe({
@@ -97,20 +118,6 @@ export class EditarAccionesComponent  implements OnInit {
       }
     });
   }
-  
-
-
-
-  updateInput(nombreEmpresa: string): void {
-    const nombreActual = this.agregarAccion?.get('nombre')?.value;
-
-    // Actualiza el valor solo si el campo está vacío
-    if (!nombreActual) {
-      this.agregarAccion?.get('nombre')?.setValue(nombreEmpresa);
-    }
-
-  }
-  
 
   
 
