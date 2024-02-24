@@ -12,6 +12,7 @@ import { StockService } from '../../services/stock.service';
 })
 export class BuscadorEmpresaComponent implements OnInit {
 
+//Propiedades de la empresa buscada
 logo: string | undefined; 
 name: string | undefined; 
 symbol: string | undefined;  
@@ -28,35 +29,51 @@ description: string | undefined;
 tags: string | undefined; 
 similarCompanies: string | undefined; 
 
+//Propiedad de control
+Cargado = 0;
 
 
 constructor(private activatedRoute:ActivatedRoute, private stockService: StockService ){ }
 
 
 ngOnInit() {
+
   this.activatedRoute.params.subscribe(params => {
- 
+
     var data = this.stockService.getData(params[('ticker')]);
-
-    data.forEach((empresaData: any) => {
-      this.logo = empresaData.logo; 
-      this.name = empresaData.name;
-      this.symbol = empresaData.symbol;
-      this.industry = empresaData.industry;
-      this.sector = empresaData.sector;
-      this.bolsa  = empresaData.exchange;
-      this.CEO = empresaData.ceo;
-      this.employees = empresaData.employees;
-      this.marketCap = empresaData.marketcap;
-      this.phone = empresaData.phone;
-      this.website = empresaData.url;
-      this.address = empresaData.hq_address;
-      this.description = empresaData.description;
-      this.tags = empresaData.tags.join(', '); 
-      this.similarCompanies = empresaData.similar.join(', '); 
-
-    });
+    
+    if(data) {
+      data.subscribe((empresaData: any) => {
+        this.logo = empresaData.logo; 
+        this.name = empresaData.name;
+        this.symbol = empresaData.symbol;
+        this.industry = empresaData.industry;
+        this.sector = empresaData.sector;
+        this.bolsa  = empresaData.exchange;
+        this.CEO = empresaData.ceo;
+        this.employees = empresaData.employees;
+        this.marketCap = empresaData.marketcap;
+        this.phone = empresaData.phone;
+        this.website = empresaData.url;
+        this.address = empresaData.hq_address;
+        this.description = empresaData.description;
+        this.tags = empresaData.tags.join(', '); 
+        this.similarCompanies = empresaData.similar.join(', '); 
+        this.Cargado = 1;
+      });
+    } 
+    else 
+    {
+      console.error('Error al obtener parámetros');
+    }
   });
+
 }
+
+
+
+
+
+
 
 }

@@ -120,8 +120,7 @@ export class StockService {
   getData(ticker: string): Observable<string> {
                         
     const polygonUrl = `https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`;
-    console.log('URL:', polygonUrl);
-
+    
     return this.http.get<any>(polygonUrl).pipe(
       switchMap(polygonResponse => {
         if (polygonResponse) {
@@ -144,7 +143,46 @@ export class StockService {
       })
     );
   }
+
+
+
+
+
+  getNews(ticker: string){
+
+    const polygonUrl = `https://api.polygon.io/v2/reference/news?ticker=${ticker}&limit=5&apiKey=${this.polygonApiKey}`;
+
+    return this.http.get<any>(polygonUrl).pipe(
+      switchMap(polygonResponse => {
+        if (polygonResponse) {
+          return of(polygonResponse);
+        } else {
+          console.error("Error: No se pudo obtener los datos de la acción desde Polygon.io");
+          return of(''); // o throwError("No se encontraron resultados");
+        }
+      }),
+      catchError(polygonError => {
+        console.error("Error al obtener el nombre de la acción desde Polygon.io", polygonError);
+    
+        if (polygonError instanceof HttpErrorResponse) {
+          if (polygonError.status === 429) {
+            console.error("Error 429: Límite de velocidad alcanzado. Reduce la frecuencia de las solicitudes.");
+          }
+        }
+    
+        return of(''); 
+      })
+    );
+
+
+
+  }
   
+
+
+
+
+
   
 
 }

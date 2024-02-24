@@ -1,17 +1,17 @@
 body {
-    background-color: #212529; /* Fondo principal más oscuro */
-    color: white; /* Texto blanco */
+    background-color: #212529; 
+    color: white; 
 }
 
 .container {
-    background-color: #343a40; /* Fondo de la tarjeta más oscuro */
+    background-color: #343a40; 
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
 }
 
 h1, h2 {
-    color: white; /* Encabezados en blanco */
+    color: white; 
 }
 
 .logo {
@@ -22,13 +22,29 @@ h1, h2 {
 }
 
 p {
-    color: #adb5bd; /* Color del texto principal */
+    color: #adb5bd; 
 }
 
 a {
-    color: #17a2b8; /* Color del enlace */
+    color: #17a2b8; 
 }
 
 .tags {
-    margin-bottom: 0; /* Elimina el margen inferior de las etiquetas */
+    margin-bottom: 0; 
 }
+
+
+.loading-text {
+    margin-top: 50px;
+    animation: fadeInOut 1.5s infinite; 
+    margin-left:20%; 
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0.5; 
+    }
+    50% {
+      opacity: 1; 
+    }
+  }
