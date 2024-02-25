@@ -29,6 +29,9 @@ description: string | undefined;
 tags: string | undefined; 
 similarCompanies: string | undefined; 
 
+//Propiedad para las noticias
+data:any[] = [];
+
 //Propiedad de control
 Cargado = 0;
 
@@ -41,6 +44,7 @@ ngOnInit() {
   this.activatedRoute.params.subscribe(params => {
 
     var data = this.stockService.getData(params[('ticker')]);
+    var news = this.stockService.getNews(params[('ticker')]);
     
     if(data) {
       data.subscribe((empresaData: any) => {
@@ -66,6 +70,24 @@ ngOnInit() {
     {
       console.error('Error al obtener parámetros');
     }
+
+    if (news) {
+      news.subscribe((newsData: any) => {
+        this.data = newsData.results.map((element: any) => ({
+          title: element.title,
+          author: element.author,
+          date: element.published_utc,
+          url: element.article_url,
+          image: element.image_url,
+          descr: element.description
+        }));
+      });
+    } 
+    else 
+    {
+      console.error('Error al obtener noticias');
+    }
+
   });
 
 }

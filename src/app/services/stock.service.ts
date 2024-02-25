@@ -118,7 +118,7 @@ export class StockService {
 
   
   getData(ticker: string): Observable<string> {
-                        
+                 
     const polygonUrl = `https://api.polygon.io/v1/meta/symbols/${ticker}/company?apiKey=${this.polygonApiKey}`;
     
     return this.http.get<any>(polygonUrl).pipe(
@@ -150,7 +150,8 @@ export class StockService {
 
   getNews(ticker: string){
 
-    const polygonUrl = `https://api.polygon.io/v2/reference/news?ticker=${ticker}&limit=5&apiKey=${this.polygonApiKey}`;
+    const limit = 3; //Queremos que devuelva max tres noticias
+    const polygonUrl = `https://api.polygon.io/v2/reference/news?ticker=${ticker}&limit=${limit}&apiKey=${this.polygonApiKey}`;
 
     return this.http.get<any>(polygonUrl).pipe(
       switchMap(polygonResponse => {
