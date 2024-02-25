@@ -35,8 +35,8 @@
             <div class="caja-noticia">
                 <h4><a [href]="article.url" target="_blank">{{ article.title }}</a></h4>
                 <p class="overflow-auto text-sm">{{ article.descr }}</p>
-                <p>By {{ article.author }}</p>
-                <p><em>{{ article.date | date:'mediumDate'}}</em></p>
+                <p style="font-size: small;">By {{ article.author }}</p>
+                <p style="font-size: small;"><em>{{ article.date | date:'mediumDate'}}</em></p>
             </div>
             <div class="image-container">
                 <img *ngIf="article.image" [src]="article.image" alt="Article Image" class="rounded">
