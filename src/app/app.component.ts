@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -10,4 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'appBolsa';
+
+  constructor(public auth: AuthService) { }
+  
 }
