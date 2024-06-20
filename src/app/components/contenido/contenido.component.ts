@@ -30,6 +30,9 @@ export class ContenidoComponent implements OnInit  {
   chart: any;
   sectorData: { label: string; value: number }[] = [];
 
+  // Variable para controlar la visibilidad del formulario de edición
+  mostrarFormularioEdicion: boolean = false;
+
   
 
   ngOnInit(): void {
@@ -69,12 +72,12 @@ export class ContenidoComponent implements OnInit  {
   }
 
   
-  // Variable para controlar la visibilidad del formulario de edición
-  mostrarFormularioEdicion: boolean = false;
   
   mostrarFormulario() {
      this.mostrarFormularioEdicion = true;
-   }
+  }
+  
+
 
   cerrarFormulario() {
     this.mostrarFormularioEdicion = false;

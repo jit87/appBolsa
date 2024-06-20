@@ -14,11 +14,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { EditarAccionesComponent } from './components/editar-acciones/editar-acciones.component'; 
 import { BuscadorEmpresaComponent } from './components/buscador-empresa/buscador-empresa.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Servicios
 import { EmpresaService } from './services/empresa.service';
 import { StockService } from './services/stock.service';
-import { PerfilComponent } from './components/perfil/perfil.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     EditarAccionesComponent,
     BuscadorEmpresaComponent,
     NavbarComponent,
-    PerfilComponent
+    PerfilComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
