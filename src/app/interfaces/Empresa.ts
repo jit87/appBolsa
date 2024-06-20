@@ -10,8 +10,9 @@ export interface Empresa{
     //per: number; 
     invertido: number; 
     industria: string; 
-   // yield: number; 
-   // dividendos: number; 
+    // yield: number;
+    // dividendos: number; 
+
 }
 
 
