@@ -17,18 +17,20 @@ import { catchError, switchMap,debounceTime, distinctUntilChanged } from 'rxjs/o
 })
 export class EditarAccionesComponent  implements OnInit {
 
-  agregarAccion: FormGroup;
+  agregarAccion: FormGroup | any;
   StockPrice: number | undefined;
   per: number | undefined;
   industria: string | undefined;  
   @ViewChild('buscarTexto') buscarTexto: HTMLInputElement | undefined;
+
+  loading = false;
 
 
   constructor(private fb: FormBuilder, private empresaService: EmpresaService, private stockService: StockService) {
     this.agregarAccion = this.fb.group({
       nombre: ['', Validators.required],
       ticker: ['', Validators.required],
-      numero: [0, Validators.required] 
+      numero: [0, [Validators.required, Validators.minLength(1), Validators.min(1)]] 
     });
   }
 
@@ -44,7 +46,16 @@ export class EditarAccionesComponent  implements OnInit {
   //ACCIONES Y CALCULOS
 
   async addAccion() {
+
+    //Marca los errores si no se han completado los campos
+    if (this.agregarAccion.invalid) {
+      this.agregarAccion.markAllAsTouched();
+      return;
+    }
+    
+    
     if (this.agregarAccion.valid) {
+      this.loading = true;
       try {
         const ticker = this.agregarAccion.get('ticker')?.value;
 
@@ -68,6 +79,8 @@ export class EditarAccionesComponent  implements OnInit {
 
         this.empresaService.addEmpresa(nuevaEmpresa);
 
+        this.loading = false; 
+
         // Reinicia el formulario después de agregar una acción con éxito
         this.agregarAccion.reset();
 
@@ -85,6 +98,7 @@ export class EditarAccionesComponent  implements OnInit {
 
 
 
+
   updateInput(nombreEmpresa: string): void {
     const nombreActual = this.agregarAccion?.get('nombre')?.value;
 
@@ -95,12 +109,18 @@ export class EditarAccionesComponent  implements OnInit {
 
   }
 
+
+
+
   // Evento para notificar el cierre del formulario
   @Output() cerrarFormulario = new EventEmitter<void>();
 
   cerrar() {
     this.cerrarFormulario.emit();
   }
+
+
+
 
 
   //CONSULTAS
@@ -119,7 +139,21 @@ export class EditarAccionesComponent  implements OnInit {
     });
   }
 
-  
+
+
+
+  //Validación de los datos introducidos en el formulario
+  get accionesNoValidas() {
+    return this.agregarAccion.get('numero').invalid && this.agregarAccion.get('numero').touched; 
+  }
+
+  get tickerNoValido() {
+    return this.agregarAccion.get('ticker').invalid && this.agregarAccion.get('ticker').touched;
+  }
+
+  get nombreNoValido() {
+    return this.agregarAccion.get('nombre').invalid && this.agregarAccion.get('nombre').touched;
+  }
 
 
 
