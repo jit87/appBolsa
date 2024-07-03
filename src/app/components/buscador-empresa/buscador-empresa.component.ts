@@ -43,54 +43,58 @@ ngOnInit() {
 
   this.activatedRoute.params.subscribe(params => {
 
-    var data = this.stockService.getData(params[('ticker')]);
-    var news = this.stockService.getNews(params[('ticker')]);
-    
-    if(data) {
-      data.subscribe((empresaData: any) => {
-        this.logo = empresaData.logo; 
-        this.name = empresaData.name;
-        this.symbol = empresaData.symbol;
-        this.industry = empresaData.industry;
-        this.sector = empresaData.sector;
-        this.bolsa  = empresaData.exchange;
-        this.CEO = empresaData.ceo;
-        this.employees = empresaData.employees;
-        this.marketCap = empresaData.marketcap;
-        this.phone = empresaData.phone;
-        this.website = empresaData.url;
-        this.address = empresaData.hq_address;
-        this.description = empresaData.description;
-        this.tags = empresaData.tags.join(', '); 
-        this.similarCompanies = empresaData.similar.join(', '); 
-        this.Cargado = 1;
-      });
-    } 
-    else 
-    {
-      console.error('Error al obtener parámetros');
-    }
+      var data = this.stockService.getData(params[('ticker')]);
+      var news = this.stockService.getNews(params[('ticker')]);
+      
+      if(data) {
+        data.subscribe((empresaData: any) => {
+          this.logo = empresaData.logo; 
+          this.name = empresaData.name;
+          this.symbol = empresaData.symbol;
+          this.industry = empresaData.industry;
+          this.sector = empresaData.sector;
+          this.bolsa  = empresaData.exchange;
+          this.CEO = empresaData.ceo;
+          this.employees = empresaData.employees;
+          this.marketCap = empresaData.marketcap;
+          this.phone = empresaData.phone;
+          this.website = empresaData.url;
+          this.address = empresaData.hq_address;
+          this.description = empresaData.description;
+          this.tags = empresaData.tags.join(', '); 
+          this.similarCompanies = empresaData.similar.join(', '); 
+          this.Cargado = 1;
+        });
+      } 
+      else 
+      {
+        console.error('Error al obtener parámetros');
+      }
 
-    if (news) {
-      news.subscribe((newsData: any) => {
-        this.data = newsData.results.map((element: any) => ({
-          title: element.title,
-          author: element.author,
-          date: element.published_utc,
-          url: element.article_url,
-          image: element.image_url,
-          descr: element.description
-        }));
-      });
-    } 
-    else 
-    {
-      console.error('Error al obtener noticias');
-    }
+      if (news) {
+        news.subscribe((newsData: any) => {
+          this.data = newsData.results.map((element: any) => ({
+            title: element.title,
+            author: element.author,
+            date: element.published_utc,
+            url: element.article_url,
+            image: element.image_url,
+            descr: element.description
+          }));
+        });
+      } 
+      else 
+      {
+        console.error('Error al obtener noticias');
+      }
 
-  });
+    });
 
-}
+  }
+  
+
+
+
 
 
 

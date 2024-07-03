@@ -11,7 +11,7 @@
 
     <div class="container mt-4 mb-4" *ngIf="Cargado !== 0">
         <h2>Información de la empresa:</h2>
-        <img class="logo" [src]="logo" alt="Company Logo" class="rounded">
+        <img class="logo" [src]="logo"  alt="Company Logo" class="rounded">
         <h2 class="mt-3">{{ name }}</h2>
         <p><strong>Símbolo:</strong> {{ symbol }}</p>
         <p><strong>Industria:</strong> {{ industry }}</p>
@@ -21,7 +21,7 @@
         <p><strong>Empleados:</strong> {{ employees }}</p>
         <p><strong>Market Cap:</strong> {{ marketCap }}</p>
         <p><strong>Teléfono:</strong> {{ phone }}</p>
-        <p><strong>Web:</strong> <a [href]="website" target="_blank">{{ website }}</a></p>
+        <p><strong>Web: </strong> <a [href]="website" target="_blank">{{ website }}</a></p>
         <p><strong>Dirección:</strong> {{ address }}</p>
         <p><strong>Descripción:</strong> {{ description }}</p>
         <p class="tags"><strong>Tags:</strong> {{ tags }}</p>

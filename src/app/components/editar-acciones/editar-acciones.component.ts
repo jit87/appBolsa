@@ -23,7 +23,7 @@ export class EditarAccionesComponent  implements OnInit {
   industria: string | undefined;  
   @ViewChild('buscarTexto') buscarTexto: HTMLInputElement | undefined;
 
-  loading = false;
+  //loading = false;
 
 
   constructor(private fb: FormBuilder, private empresaService: EmpresaService, private stockService: StockService) {
@@ -52,10 +52,7 @@ export class EditarAccionesComponent  implements OnInit {
       this.agregarAccion.markAllAsTouched();
       return;
     }
-    
-    
     if (this.agregarAccion.valid) {
-      this.loading = true;
       try {
         const ticker = this.agregarAccion.get('ticker')?.value;
 
@@ -63,7 +60,7 @@ export class EditarAccionesComponent  implements OnInit {
         const precio = await lastValueFrom(precioObservable);
         const industriaObservable = this.stockService.getIndustry(ticker);
         this.industria = await lastValueFrom(industriaObservable);
-     
+
          //const perObservable = this.stockService.getPER(ticker);
         //this.per = await lastValueFrom(perObservable);
 
@@ -78,8 +75,6 @@ export class EditarAccionesComponent  implements OnInit {
         };
 
         this.empresaService.addEmpresa(nuevaEmpresa);
-
-        this.loading = false; 
 
         // Reinicia el formulario después de agregar una acción con éxito
         this.agregarAccion.reset();
