@@ -98,7 +98,7 @@ export class StockService {
           return of(polygonName);
         } else {
           console.error("Error: No se pudo obtener el nombre de la acción desde Polygon.io");
-          return of(''); // o throwError("No se encontraron resultados");
+          return of(''); 
         }
       }),
       catchError(polygonError => {
@@ -110,7 +110,7 @@ export class StockService {
           }
         }
   
-        return of(''); // o throwError("Error en la solicitud a Polygon.io");
+        return of(''); 
       })
     );
   }
@@ -127,7 +127,7 @@ export class StockService {
           return of(polygonResponse);
         } else {
           console.error("Error: No se pudo obtener los datos de la acción desde Polygon.io");
-          return of(''); // o throwError("No se encontraron resultados");
+          return of(''); 
         }
       }),
       catchError(polygonError => {
@@ -150,7 +150,7 @@ export class StockService {
 
   getNews(ticker: string){
 
-    const limit = 3; //Queremos que devuelva max tres noticias
+    const limit = 3; 
     const polygonUrl = `https://api.polygon.io/v2/reference/news?ticker=${ticker}&limit=${limit}&apiKey=${this.polygonApiKey}`;
 
     return this.http.get<any>(polygonUrl).pipe(
@@ -159,7 +159,7 @@ export class StockService {
           return of(polygonResponse);
         } else {
           console.error("Error: No se pudo obtener los datos de la acción desde Polygon.io");
-          return of(''); // o throwError("No se encontraron resultados");
+          return of(''); 
         }
       }),
       catchError(polygonError => {
