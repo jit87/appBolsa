@@ -10,29 +10,20 @@ import { APP_ROUTING } from './app.routes';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ContenidoComponent } from './components/contenido/contenido.component';
-import { EditarAccionesComponent } from './components/editar-acciones/editar-acciones.component'; 
-import { BuscadorEmpresaComponent } from './components/buscador-empresa/buscador-empresa.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
-import { FooterComponent } from './components/footer/footer.component';
+
 
 // Servicios
 import { EmpresaService } from './services/empresa.service';
 import { StockService } from './services/stock.service';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ContenidoComponent,
-    EditarAccionesComponent,
-    BuscadorEmpresaComponent,
-    NavbarComponent,
-    PerfilComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
+    ComponentsModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

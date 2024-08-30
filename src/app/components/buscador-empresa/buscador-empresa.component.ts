@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Empresa } from '../../interfaces/Empresa';
 import { StockService } from '../../services/stock.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -36,7 +37,7 @@ data:any[] = [];
 Cargado = 0;
 
 
-constructor(private activatedRoute:ActivatedRoute, private stockService: StockService ){ }
+constructor(private activatedRoute:ActivatedRoute, private stockService: StockService, private location: Location ){ }
 
 
 ngOnInit() {
@@ -90,6 +91,15 @@ ngOnInit() {
 
     });
 
+  }
+
+
+
+
+
+  regresar() {
+    this.location.back(); 
+    
   }
   
 
